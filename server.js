@@ -3,6 +3,8 @@ import cors from 'cors';
 import bodyParser from 'body-parser'
 import mongoose from 'mongoose';
 
+import Issue from './models/Issue'
+
 const app = express();
 const router = express.Router();
 
@@ -16,6 +18,7 @@ app.use(bodyParser.json());
 // connection.once('open', () => {
 //     console.log('MongoDB database connection extablished successfully');
 // });
+
 
 app.use('/', router);
 
