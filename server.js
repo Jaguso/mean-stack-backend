@@ -28,6 +28,15 @@ router.route('/issues').get((req, res) => {
     });
 });
 
+router.route('/issues/:id').get((req, res) => {
+    Issue.findById(req.params.id, (err, issue) => {
+        if (err)
+            console.log(err);
+        else 
+            res.json(issue);
+    });
+});
+
 app.use('/', router);
 
 app.listen(4000, () => console.log('Express server running on port 4000'));
