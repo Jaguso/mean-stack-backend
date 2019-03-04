@@ -46,7 +46,16 @@ router.route('/issues/:id').get((req, res) => {
     });
 });
 
-// router.route('/issues/add').post((req, res) => )
+router.route('/issues/add').post((req, res) => {
+    let issue = new Issue(req.body);
+    issue.save()
+        .then(issue => {
+            res.status(200).json({'issue': 'Added successfully'})
+        })
+        .catch(err => {
+            res.status(400).send('Failed to create a new record')
+        });
+});
 
 
 app.use('/', router);
