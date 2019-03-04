@@ -19,6 +19,14 @@ app.use(bodyParser.json());
 //     console.log('MongoDB database connection extablished successfully');
 // });
 
+router.route('/issues').get((req, res) => {
+    Issue.find((err, issues) => {
+        if (err)
+            console.log(err);
+        else
+            res.json(issues);
+    });
+});
 
 app.use('/', router);
 
