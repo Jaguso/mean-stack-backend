@@ -19,6 +19,15 @@ app.use(bodyParser.json());
 //     console.log('MongoDB database connection extablished successfully');
 // });
 
+mongoose.connect(
+    'mongodb://author:' +
+    '1234cycle' + 
+    '@cluster0-shard-00-00-xhdtb.mongodb.net:27017,cluster0-shard-00-01-xhdtb.mongodb.net:27017,cluster0-shard-00-02-xhdtb.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true',
+    {
+        useNewUrlParser: true
+    }
+);
+
 router.route('/issues').get((req, res) => {
     Issue.find((err, issues) => {
         if (err)
@@ -36,6 +45,9 @@ router.route('/issues/:id').get((req, res) => {
             res.json(issue);
     });
 });
+
+// router.route('/issues/add').post((req, res) => )
+
 
 app.use('/', router);
 
