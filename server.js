@@ -57,6 +57,26 @@ router.route('/issues/add').post((req, res) => {
         });
 });
 
+router.route('/issues/update/:id').post((req, res) => {
+    Issue.findById(req.param.id, (err, issue) => {
+        if (!issue) 
+            return next(new Error('Could not load document'));
+        else {
+            issue.title = req.body.title;
+            issue.responsible = req.body.responsible;
+            issue.description = req.body.description;
+            issue.severity = req.body.severity;
+            issue.status = req.body.status;
+
+            issue.save().then(issue => {
+                res.json('Update done');
+            }).catch(err => {
+                res.status(400).send('Update failed')
+            });
+        }
+    });
+});
+
 
 app.use('/', router);
 
