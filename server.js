@@ -13,12 +13,6 @@ app.use(bodyParser.json());
 
 // mongoose.connect('');
 
-// const connection = mongoose.connection;
-
-// connection.once('open', () => {
-//     console.log('MongoDB database connection extablished successfully');
-// });
-
 mongoose.connect(
     'mongodb://author:' +
     '1234cycle' + 
@@ -27,6 +21,14 @@ mongoose.connect(
         useNewUrlParser: true
     }
 );
+
+
+const connection = mongoose.connection;
+
+connection.once('open', () => {
+    console.log('MongoDB database connection extablished successfully');
+});
+
 
 router.route('/issues').get((req, res) => {
     Issue.find((err, issues) => {
