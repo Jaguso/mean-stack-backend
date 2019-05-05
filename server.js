@@ -5,6 +5,8 @@ import mongoose from 'mongoose';
 
 import Issue from './models/Issue'
 
+require('dotenv').config();
+
 const app = express();
 const router = express.Router();
 
@@ -15,7 +17,7 @@ app.use(bodyParser.json());
 
 mongoose.connect(
     'mongodb://author:' +
-    '1234cycle' + 
+    process.env.DB_PASSWORD + 
     '@cluster0-shard-00-00-xhdtb.mongodb.net:27017,cluster0-shard-00-01-xhdtb.mongodb.net:27017,cluster0-shard-00-02-xhdtb.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true',
     {
         useNewUrlParser: true
